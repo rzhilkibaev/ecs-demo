@@ -1,15 +1,19 @@
 package com.rz.ecsdemo.resources;
 
-import java.util.Optional;
+import io.dropwizard.jersey.params.IntParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
-import javax.ws.rs.QueryParam;
+import javax.ws.rs.PathParam;
 
 @Path("mem")
 public class MemResource {
 
     @GET
-    public void consumeMemory(@QueryParam("amountMb") Optional<Integer> amountMb) {
-        System.out.println(amountMb.orElse(0));
+    @Path("/{amountMb}")
+    public String consumeMemory(@PathParam("amountMb") IntParam amountMb) {
+        byte[][] megabytes = new byte[amountMb.get()][1024 * 1024];
+        long freeMb = Runtime.getRuntime().freeMemory() / 1024;
+        return "Consumed: " + megabytes.length + "Mb, free: " + freeMb;
     }
 }
+
