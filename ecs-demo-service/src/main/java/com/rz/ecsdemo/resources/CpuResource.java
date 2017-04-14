@@ -23,7 +23,7 @@ public class CpuResource {
         for (int i = 0; i < threads.get(); i++) {
             executorService.submit(new BusyTask(durationMs.get()));
         }
-        return "Started " + threads.get() + "threads on " + Runtime.getRuntime().availableProcessors() + " available processors";
+        return "Started " + threads.get() + " threads on " + Runtime.getRuntime().availableProcessors() + " available processors";
     }
 
     private static final class BusyTask implements Runnable {

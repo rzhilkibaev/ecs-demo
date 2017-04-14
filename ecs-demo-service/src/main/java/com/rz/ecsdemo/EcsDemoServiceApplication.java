@@ -3,13 +3,14 @@ package com.rz.ecsdemo;
 import com.rz.ecsdemo.resources.CpuResource;
 import com.rz.ecsdemo.resources.MemResource;
 import io.dropwizard.Application;
+import io.dropwizard.Configuration;
 import io.dropwizard.lifecycle.Managed;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class EcsDemoServiceApplication extends Application<EcsDemoServiceConfiguration> {
+public class EcsDemoServiceApplication extends Application<Configuration> {
 
     public static void main(final String[] args) throws Exception {
         new EcsDemoServiceApplication().run(args);
@@ -21,12 +22,12 @@ public class EcsDemoServiceApplication extends Application<EcsDemoServiceConfigu
     }
 
     @Override
-    public void initialize(final Bootstrap<EcsDemoServiceConfiguration> bootstrap) {
+    public void initialize(final Bootstrap<Configuration> bootstrap) {
         // do nothing
     }
 
     @Override
-    public void run(final EcsDemoServiceConfiguration configuration, final Environment environment) {
+    public void run(final Configuration configuration, final Environment environment) {
         ExecutorService executorService = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
         environment.jersey().register(new MemResource());
         environment.jersey().register(new CpuResource(executorService));
