@@ -1,6 +1,8 @@
 language: java
 sudo: false
 
+dist: trusty
+
 before_script: cd ecs-demo-service
 script: mvn clean verify
 
