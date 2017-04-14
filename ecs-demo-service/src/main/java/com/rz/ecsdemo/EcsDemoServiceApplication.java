@@ -1,5 +1,6 @@
 package com.rz.ecsdemo;
 
+import com.rz.ecsdemo.resources.MemResource;
 import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
@@ -21,9 +22,8 @@ public class EcsDemoServiceApplication extends Application<EcsDemoServiceConfigu
     }
 
     @Override
-    public void run(final EcsDemoServiceConfiguration configuration,
-                    final Environment environment) {
-        // TODO: implement application
+    public void run(final EcsDemoServiceConfiguration configuration, final Environment environment) {
+        environment.jersey().register(new MemResource());
     }
 
 }
