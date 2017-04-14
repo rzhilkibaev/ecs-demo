@@ -1,10 +1,19 @@
 language: java
-sudo: false
+sudo: required
+
+services:
+  - docker
 
 dist: trusty
 
 before_script: cd ecs-demo-service
+
 script: mvn clean verify
+
+after_success:
+  - docker build -t rzhilkibaev/ecs-demo-service .
+  - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+  - docker push rzhilkibaev/ecs-demo-service
 
 jdk:
   - openjdk8
