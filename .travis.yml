@@ -1,4 +1,5 @@
 language: java
 sudo: false
 
+before_script: cd ecs-demo-service
 script: mvn clean verify
