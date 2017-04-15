@@ -1,0 +1,15 @@
+[
+	{
+		"name": "ecs-demo-service",
+		"image": "rzhilkibaev/ecs-demo-service",
+		"cpu": 10,
+		"memoryReservation": 512,
+		"essential": true,
+		"portMappings": [
+			{
+				"containerPort": 8080,
+				"hostPort": 80
+			}
+		]
+	}
+]
